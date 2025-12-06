@@ -429,7 +429,7 @@ def mostrar_login():
                     # nada especial, solo en esta sesión
                     pass
                 st.success("Inicio de sesión exitoso. Cargando panel...")
-                st.experimental_rerun()
+                experimental_rerun()
             else:
                 st.error("Usuario o contraseña incorrectos.")
 
@@ -505,7 +505,7 @@ if st.sidebar.button("Cerrar sesión", use_container_width=True):
     st.session_state.usuario = None
     st.session_state.rol = None
     st.session_state.nombre_mostrar = None
-    st.experimental_rerun()
+    experimental_rerun()
 
 margen_global = st.sidebar.number_input(
     "Margen objetivo por defecto (%)",

@@ -399,47 +399,118 @@ def guardar_solicitudes(df_solicitudes):
 # LOGIN
 # =========================
 def mostrar_login():
-    st.markdown('<div class="login-bg">', unsafe_allow_html=True)
-    with st.container():
-        st.markdown('<div class="login-card">', unsafe_allow_html=True)
+    st.markdown(
+        """
+        <style>
+            .stApp {
+                background-image: url("login_fondo.jpg");
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }
 
-        st.markdown('<div class="login-robot">🤖</div>', unsafe_allow_html=True)
-        st.markdown('<div class="login-title">IA de Códigos - MS</div>', unsafe_allow_html=True)
-        st.markdown(
-            '<div class="login-subtitle">Iniciá sesión para gestionar códigos, precios y solicitudes con ayuda de la IA.</div>',
-            unsafe_allow_html=True
-        )
+            .login-wrapper {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-        usuario = st.text_input("Usuario", key="login_usuario")
-        password = st.text_input("Contraseña", type="password", key="login_password")
+            .login-card {
+                background: rgba(0, 0, 0, 0.60);
+                backdrop-filter: blur(8px);
+                padding: 35px 32px;
+                border-radius: 20px;
+                max-width: 420px;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 10px 28px rgba(0,0,0,0.6);
+                color: #ffffff;
+                font-family: "Segoe UI", sans-serif;
+            }
 
-        col_b1, col_b2 = st.columns([1, 1.2])
-        with col_b1:
-            recordarme = st.checkbox("Recordarme", value=False)
-        with col_b2:
-            ingresar = st.button("Ingresar 🚀", use_container_width=True)
+            .login-title {
+                font-size: 30px;
+                font-weight: 700;
+                margin-bottom: 8px;
+                color: #6bb6ff;
+                text-shadow: 0 0 10px rgba(107,182,255,0.9);
+            }
 
-        if ingresar:
-            if usuario in USERS and USERS[usuario]["password"] == password:
-                st.session_state.logged_in = True
-                st.session_state.usuario = usuario
-                st.session_state.rol = USERS[usuario]["role"]
-                st.session_state.nombre_mostrar = USERS[usuario]["nombre"]
-                if not recordarme:
-                    # nada especial, solo en esta sesión
-                    pass
-                st.success("Inicio de sesión exitoso. Cargando panel...")
-                st.rerun()()
-            else:
-                st.error("Usuario o contraseña incorrectos.")
+            .login-subtitle {
+                font-size: 15px;
+                opacity: 0.85;
+                margin-bottom: 25px;
+            }
 
-        st.markdown(
-            '<div class="login-footer">Multisuministros de Costa Rica · IA interna para gestión de códigos</div>',
-            unsafe_allow_html=True
-        )
+            .stTextInput > div > div > input {
+                background: rgba(255,255,255,0.9);
+                border-radius: 10px;
+                height: 45px;
+                font-size: 16px;
+            }
 
-        st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+            .stButton>button {
+                background: #00d4ff;
+                color: #000000;
+                font-weight: 700;
+                border-radius: 10px;
+                padding: 10px 0;
+                width: 100%;
+                border: none;
+                font-size: 18px;
+                box-shadow: 0 0 18px rgba(0,212,255,0.8);
+            }
+
+            .stButton>button:hover {
+                background: #00a8cc;
+                box-shadow: 0 0 25px rgba(0,212,255,1);
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Contenedor centrado
+    st.markdown('<div class="login-wrapper"><div class="login-card">', unsafe_allow_html=True)
+
+    st.markdown(
+        '<div class="login-title">IA de Códigos - Multisuministros</div>',
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        '<div class="login-subtitle">Iniciá sesión para gestionar códigos, CABYS y solicitudes.</div>',
+        unsafe_allow_html=True
+    )
+
+    # ---- Formulario real de Streamlit ----
+    usuario = st.text_input("Usuario", key="login_usuario")
+    password = st.text_input("Contraseña", type="password", key="login_password")
+
+    col_b1, col_b2 = st.columns([1, 1.2])
+    with col_b1:
+        recordarme = st.checkbox("Recordarme", value=False)
+    with col_b2:
+        ingresar = st.button("Ingresar 🚀", use_container_width=True)
+
+    if ingresar:
+        if usuario in USERS and USERS[usuario]["password"] == password:
+            st.session_state.logged_in = True
+            st.session_state.usuario = usuario
+            st.session_state.rol = USERS[usuario]["role"]
+            st.session_state.nombre_mostrar = USERS[usuario]["nombre"]
+
+            if not recordarme:
+                # inicio de sesión solo para esta sesión
+                pass
+
+            st.success("Inicio de sesión exitoso. Cargando panel...")
+            st.rerun()
+        else:
+            st.error("Usuario o contraseña incorrectos.")
+
+    st.markdown("</div></div>", unsafe_allow_html=True)
+
 
 
 # =========================

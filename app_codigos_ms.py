@@ -5,6 +5,27 @@ import os
 import difflib
 import uuid
 from datetime import datetime
+import base64
+
+def set_fondo_login():
+    with open("login_fondo.jpg", "rb") as img_file:
+        img_bytes = img_file.read()
+    img_base64 = base64.b64encode(img_bytes).decode()
+
+    st.markdown(
+        f"""
+        <style>
+            .stApp {{
+                background-image: url("data:image/jpg;base64,{img_base64}");
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 
 # =========================
 # CONFIGURACIÓN GENERAL
@@ -399,17 +420,12 @@ def guardar_solicitudes(df_solicitudes):
 # LOGIN
 # =========================
 def mostrar_login():
-    # CSS para fondo e interfaz del login
+    # Fondo futurista con la imagen
+    set_fondo_login()
+
     st.markdown(
         """
         <style>
-            .stApp {
-                background-image: url("login_fondo.jpg");
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-            }
-
             .login-wrapper {
                 height: 100vh;
                 display: flex;
@@ -468,26 +484,17 @@ def mostrar_login():
                 box-shadow: 0 0 25px rgba(0,212,255,1);
             }
         </style>
+        <div class="login-wrapper">
+            <div class="login-card">
+                <div class="login-title">IA de Códigos - Multisuministros</div>
+                <div class="login-subtitle">
+                    Iniciá sesión para gestionar códigos, CABYS y solicitudes.
+                </div>
         """,
         unsafe_allow_html=True
     )
 
-    # Contenedor centrado del login
-    st.markdown(
-        '<div class="login-wrapper"><div class="login-card">',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<div class="login-title">IA de Códigos - Multisuministros</div>',
-        unsafe_allow_html=True
-    )
-    st.markdown(
-        '<div class="login-subtitle">Iniciá sesión para gestionar códigos, CABYS y solicitudes.</div>',
-        unsafe_allow_html=True
-    )
-
-    # ----------- FORMULARIO REAL -----------
+    # -------- FORMULARIO REAL STREAMLIT ----------
     usuario = st.text_input("Usuario", key="login_usuario")
     password = st.text_input("Contraseña", type="password", key="login_password")
 
@@ -505,7 +512,7 @@ def mostrar_login():
             st.session_state.nombre_mostrar = USERS[usuario]["nombre"]
 
             if not recordarme:
-                # sesión solo mientras la pestaña esté abierta
+                # Sesión solo mientras la pestaña esté abierta
                 pass
 
             st.success("Inicio de sesión exitoso. Cargando panel...")

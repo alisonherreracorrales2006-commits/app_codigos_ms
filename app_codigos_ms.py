@@ -419,25 +419,31 @@ def guardar_solicitudes(df_solicitudes):
 # =========================
 # LOGIN
 # =========================
+
 def set_fondo_login():
     st.markdown(
         """
         <style>
             .stApp {
                 background-image: url("login_fondo.jpg");
-                background-size: 130%;
+                /* Para que se vea casi completa, no tan grande */
+                background-size: contain;      /* prueba también 110% o 120% si quieres un poco más grande */
                 background-position: center top;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
+                background-color: #020617;     /* color de fondo por si la imagen no llena todo */
             }
         </style>
         """,
         unsafe_allow_html=True
     )
 
+
 def mostrar_login():
+    # Aplica el fondo futurista
     set_fondo_login()
 
+    # Estilos del login (tarjeta, textos, etc.)
     st.markdown(
         """
         <style>
@@ -499,6 +505,7 @@ def mostrar_login():
                 box-shadow: 0 0 25px rgba(0,212,255,1);
             }
         </style>
+
         <div class="login-wrapper">
             <div class="login-card">
                 <div class="login-title">IA de Códigos - Multisuministros</div>
@@ -508,6 +515,12 @@ def mostrar_login():
         """,
         unsafe_allow_html=True
     )
+
+    #  Aquí siguen tus inputs normales:
+    # usuario = st.text_input(...)
+    # password = st.text_input(...)
+    # botón, validación, etc.
+
 
     # -------- FORMULARIO REAL STREAMLIT ----------
     usuario = st.text_input("Usuario", key="login_usuario")

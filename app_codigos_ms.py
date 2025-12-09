@@ -423,23 +423,7 @@ def mostrar_login():
     # Fondo futurista con la imagen
     set_fondo_login()
     def set_fondo_login():
-    st.markdown(
-        """
-        <style>
-            .stApp {
-                background-image: url("login_fondo.jpg");
-               background-size: 140%;
-background-position: top center;
-
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-
+    
     st.markdown(
         """
         <style>

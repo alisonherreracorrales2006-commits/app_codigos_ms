@@ -419,17 +419,14 @@ def guardar_solicitudes(df_solicitudes):
 # =========================
 # LOGIN
 # =========================
-def mostrar_login():
-    # Fondo futurista con la imagen
-     set_fondo_login()
-    
-     st.markdown(
+def set_fondo_login():
+    st.markdown(
         """
         <style>
             .stApp {
                 background-image: url("login_fondo.jpg");
-                background-size: 140%;
-                background-position: top center;
+                background-size: 130%;
+                background-position: center top;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
             }
@@ -437,6 +434,25 @@ def mostrar_login():
         """,
         unsafe_allow_html=True
     )
+
+def mostrar_login():
+    set_fondo_login()
+
+    st.markdown(
+        """
+        <style>
+            .login-wrapper {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+        """
+    )
+
+    
+   
 
     
     st.markdown(

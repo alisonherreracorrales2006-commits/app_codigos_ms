@@ -447,23 +447,6 @@ def mostrar_login():
                 align-items: center;
                 justify-content: center;
             }
-        </style>
-        """
-    )
-
-    
-   
-
-    
-    st.markdown(
-        """
-        <style>
-            .login-wrapper {
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
 
             .login-card {
                 background: rgba(0, 0, 0, 0.60);

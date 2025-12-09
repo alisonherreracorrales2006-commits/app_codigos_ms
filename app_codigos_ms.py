@@ -421,9 +421,8 @@ def guardar_solicitudes(df_solicitudes):
 # =========================
 def mostrar_login():
     # Fondo futurista con la imagen
-    set_fondo_login()
-    def set_fondo_login():
-        def set_fondo_login():
+    def set_fondo_login()
+    
     st.markdown(
         """
         <style>

@@ -423,7 +423,7 @@ def mostrar_login():
     # Fondo futurista con la imagen
      set_fondo_login()
     
-    st.markdown(
+     st.markdown(
         """
         <style>
             .stApp {

@@ -399,6 +399,7 @@ def guardar_solicitudes(df_solicitudes):
 # LOGIN
 # =========================
 def mostrar_login():
+    # CSS para fondo e interfaz del login
     st.markdown(
         """
         <style>
@@ -418,14 +419,14 @@ def mostrar_login():
 
             .login-card {
                 background: rgba(0, 0, 0, 0.60);
-                backdrop-filter: blur(8px);
-                padding: 35px 32px;
                 border-radius: 20px;
+                padding: 35px 30px;
                 max-width: 420px;
                 width: 100%;
-                text-align: center;
-                box-shadow: 0 10px 28px rgba(0,0,0,0.6);
+                box-shadow: 0 10px 28px rgba(0,0,0,0.7);
                 color: #ffffff;
+                text-align: center;
+                backdrop-filter: blur(8px);
                 font-family: "Segoe UI", sans-serif;
             }
 
@@ -471,8 +472,11 @@ def mostrar_login():
         unsafe_allow_html=True
     )
 
-    # Contenedor centrado
-    st.markdown('<div class="login-wrapper"><div class="login-card">', unsafe_allow_html=True)
+    # Contenedor centrado del login
+    st.markdown(
+        '<div class="login-wrapper"><div class="login-card">',
+        unsafe_allow_html=True
+    )
 
     st.markdown(
         '<div class="login-title">IA de Códigos - Multisuministros</div>',
@@ -483,7 +487,7 @@ def mostrar_login():
         unsafe_allow_html=True
     )
 
-    # ---- Formulario real de Streamlit ----
+    # ----------- FORMULARIO REAL -----------
     usuario = st.text_input("Usuario", key="login_usuario")
     password = st.text_input("Contraseña", type="password", key="login_password")
 
@@ -501,7 +505,7 @@ def mostrar_login():
             st.session_state.nombre_mostrar = USERS[usuario]["nombre"]
 
             if not recordarme:
-                # inicio de sesión solo para esta sesión
+                # sesión solo mientras la pestaña esté abierta
                 pass
 
             st.success("Inicio de sesión exitoso. Cargando panel...")

@@ -423,15 +423,14 @@ def guardar_solicitudes(df_solicitudes):
 def set_fondo_login():
     st.markdown(
         """
-        <style>
+          <style>
             .stApp {
+                /* SOLO la imagen, sin capas oscuras encima */
                 background-image: url("login_fondo.jpg");
-                /* Para que se vea casi completa, no tan grande */
-                background-size: contain;      /* prueba también 110% o 120% si quieres un poco más grande */
-                background-position: center top;
+                background-size: cover;          /* Para que se adapte a la pantalla */
+                background-position: top center; /* Que se vea más completa hacia arriba */
                 background-repeat: no-repeat;
                 background-attachment: fixed;
-                background-color: #020617;     /* color de fondo por si la imagen no llena todo */
             }
         </style>
         """,
